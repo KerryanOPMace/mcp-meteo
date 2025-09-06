@@ -42,7 +42,7 @@ Config json nécessaire
     "mcpServers":{
         "meteo":{
             "command":"uvx",
-            "args": "mcp_meteo"
+            "args": "mcp-meteo"
         }
     }
 }

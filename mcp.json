@@ -1,0 +1,12 @@
+{
+	"servers": {
+		"mcp_meteo_kerryan": {
+			"type": "stdio",
+			"command": "uvx",
+			"args": [
+				"mcp-meteo"
+			]
+		}
+	},
+	"inputs": []
+}
