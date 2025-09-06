@@ -2,35 +2,52 @@
 import asyncio
 from fastmcp import Client
 
-client=Client("./mcp_meteo/server.py")
+client = Client("./mcp_meteo/server.py")
 
 async def main():
     async with client:
-        
-        
         tools = await client.list_tools()
         print("Outils disponibles:", tools)
-        
-        # Test météo actuelle par ville
+
+        # Météo actuelle
         print("\n>>> Météo Paris")
-        result_city = await client.call_tool("get_weather_by_city", {"city": "Paris"})
-        print(result_city)
+        weather = await client.call_tool("get_weather_by_city", {"city": "Paris"})
+        print(weather)
 
-        # Test prévisions par coordonnées
-        print("\n>>> Prévisions Paris (coordonnées, 3 jours)")
-        result_forecast = await client.call_tool("get_forecast", {
-            "latitude": 48.8566,
-            "longitude": 2.3522,
-            "days": 3
-        })
-        print(result_forecast)
+        # Prévisions météo
+        print("\n>>> Prévisions Paris (5 jours)")
+        forecast = await client.call_tool("get_forecast_by_city", {"city": "Paris", "days": 5})
+        print(forecast)
 
-        # Test prévisions par ville
-        print("\n>>> Prévisions Paris (par nom, 5 jours)")
-        result_forecast_city = await client.call_tool("get_forecast_by_city", {
+        # Qualité de l’air
+        print("\n>>> Qualité de l'air Paris")
+        air_quality = await client.call_tool("get_air_quality_by_city", {"city": "Paris"})
+        print(air_quality)
+
+        # Marine forecast
+        print("\n>>> Prévisions marines Marseille")
+        marine = await client.call_tool("get_marine_forecast_by_city", {"city": "Marseille"})
+        print(marine)
+
+        # Données historiques
+        print("\n>>> Historique météo Paris (2023-01-01 -> 2023-01-07)")
+        archive = await client.call_tool("get_archive_weather_by_city", {
             "city": "Paris",
-            "days": 5
+            "start_date": "2023-01-01",
+            "end_date": "2023-01-07"
         })
-        print(result_forecast_city)
+        print(archive)
 
-asyncio.run(main())
+        # Prévisions saisonnières
+        print("\n>>> Prévisions saisonnières Paris")
+        seasonal = await client.call_tool("get_seasonal_forecast_by_city", {"city": "Paris"})
+        print(seasonal)
+
+        # Prévisions ensemble
+        print("\n>>> Prévisions ensemble Paris")
+        ensemble = await client.call_tool("get_ensemble_forecast_by_city", {"city": "Paris"})
+        print(ensemble)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
