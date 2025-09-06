@@ -1,5 +1,5 @@
 # server.py
-from fastmcp import FastMCP, tool
+from fastmcp import FastMCP
 import requests
 
 
