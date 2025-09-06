@@ -9,7 +9,7 @@ BASE_GEOCODE_URL = "https://geocoding-api.open-meteo.com/v1/search"
 
 
 def main():
-    mcp = FastMCP("weather-mcp")
+    mcp = FastMCP("mcp-meteo")
 
 
     @mcp.tool

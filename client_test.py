@@ -2,7 +2,7 @@
 import asyncio
 from fastmcp import Client
 
-client=Client("./server.py")
+client=Client("./mcp_meteo/server.py")
 
 async def main():
     async with client:
