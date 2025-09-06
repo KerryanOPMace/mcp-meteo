@@ -33,23 +33,41 @@ python -m mcp-meteo.server
 ```
 Le serveur démarre en mode `stdio` et expose plusieurs outils MCP pour interroger la météo.
 
+## Intégrer directement à Claude Desktop/VS code
+
+Config json nécessaire 
+
+```json
+{
+    "mcpServers":{
+        "meteo":{
+            "command":"uvx",
+            "args": "mcp_meteo"
+        }
+    }
+}
+```
+
 ## Structure du projet
 
 - `mcp-meteo/server.py` : Serveur MCP principal, expose les outils météo.
 - `client_test.py` : Exemple de client.
 - `pyproject.toml` : Dépendances et configuration du projet.
 
+
 ## API utilisées
 
 - [Open-Meteo Forecast](https://open-meteo.com/)
 - [Open-Meteo Geocoding](https://open-meteo.com/en/docs/geocoding-api)
 
-## Exemple d'outils MCP
+## Liste d'outils MCP
 
 - `get_weather(latitude, longitude)`
 - `get_weather_by_city(city)`
 - `get_forecast(latitude, longitude, days)`
 - `get_forecast_by_city(city, days)`
+
+
 
 ## Licence
 
